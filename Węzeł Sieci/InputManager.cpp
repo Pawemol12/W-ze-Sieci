@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "InputManager.h"
-
 using namespace std;
 
 InputManager::InputManager()

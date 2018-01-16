@@ -144,17 +144,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MixedPacket.h" />
+    <ClInclude Include="NumberPacket.h" />
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextPacket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MixedPacket.cpp" />
+    <ClCompile Include="NumberPacket.cpp" />
+    <ClCompile Include="Packet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TextPacket.cpp" />
     <ClCompile Include="Węzeł Sieci.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
