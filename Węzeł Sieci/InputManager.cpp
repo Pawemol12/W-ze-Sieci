@@ -57,6 +57,7 @@ int InputManager::tryParseInputArguments(int argc, char* argv[])
 		}
 
 	}
+	return PARSE_INPUT_RESULT_OK;
 }
 
 

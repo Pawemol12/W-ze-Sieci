@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TextPacket.h"
-
+#include "RandomNumbersGenerator.h"
 #define CHARACTERS_NUM_TEXT 26
 
 void TextPacket::generate() {
@@ -9,12 +9,12 @@ void TextPacket::generate() {
 		'k','l','m','n','o','p','q','r','s','t',
 		'u','v','w','x','y','z',
 	};
-	this->generationTime = 0;
+
 	for (int i = 0; i < this->length; i++) {
-		int index = rand() % (CHARACTERS_NUM_TEXT - 1);
+		int index = RandomNumbersGenerator::generateRandomInt(0, CHARACTERS_NUM_TEXT - 1);
 		this->charArray[i] = avaliableChars[index];
-		this->generationTime += MILISECONDS_PER_CHAR;
 	}
+	this->charArray[this->length] = '\0';
 }
 
 

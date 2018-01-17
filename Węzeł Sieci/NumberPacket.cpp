@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "NumberPacket.h"
-
+#include "RandomNumbersGenerator.h"
 
 NumberPacket::~NumberPacket()
 {
@@ -8,9 +8,7 @@ NumberPacket::~NumberPacket()
 }
 
 void NumberPacket::generate() {
-	this->generationTime = 0;
 	for (int i = 0; i < this->length; i++) {
-		this->numberArray[i] = rand() % 10;
+		this->numberArray[i] = RandomNumbersGenerator::generateRandomInt(0, 9);
 	}
-	this->generationTime += MILISECONDS_PER_INT;
 };

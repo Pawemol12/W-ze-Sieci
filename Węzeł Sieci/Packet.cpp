@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Packet.h"
-
+#include "RandomNumbersGenerator.h"
 
 Packet::Packet()
 {
-	this->length = rand() % MAX_PACKET_LENGTH + MIN_PACKET_LENGTH;
+	this->length = RandomNumbersGenerator::generateRandomInt(MIN_PACKET_LENGTH, MAX_PACKET_LENGTH);
 }
 
 

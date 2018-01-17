@@ -145,8 +145,13 @@
   <ItemGroup>
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MixedPacket.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="NumberPacket.h" />
+    <ClInclude Include="OutputManager.h" />
     <ClInclude Include="Packet.h" />
+    <ClInclude Include="PacketGenerator.h" />
+    <ClInclude Include="PacketStats.h" />
+    <ClInclude Include="RandomNumbersGenerator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextPacket.h" />
@@ -154,8 +159,12 @@
   <ItemGroup>
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MixedPacket.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="NumberPacket.cpp" />
+    <ClCompile Include="OutputManager.cpp" />
     <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="PacketGenerator.cpp" />
+    <ClCompile Include="RandomNumbersGenerator.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

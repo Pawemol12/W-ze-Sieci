@@ -12,6 +12,7 @@ public:
 		this->generate();
 	};
 	virtual void generate();
+	int * getNumberArray() { return numberArray; };
 	~NumberPacket();
 };
 
