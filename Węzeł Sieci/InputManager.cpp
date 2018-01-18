@@ -19,7 +19,7 @@ bool InputManager::isSwitcherKey(std::string switcherKey)
 int InputManager::tryParseInputArguments(int argc, char* argv[]) 
 {
 	if (argc < TOTAL_PARAMETRS_NUMBER + 1)
-		return PARSE_INPUT_RESULT_NOT_ENAUGH_ARGUMENTS;
+		return PARSE_INPUT_RESULT_NOT_ENOUGH_ARGUMENTS;
 
 	for (int i = 1; i < argc; i++) {
 		string switcherKey(argv[i]);

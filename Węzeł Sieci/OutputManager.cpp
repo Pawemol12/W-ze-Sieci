@@ -15,9 +15,9 @@ bool OutputManager::createStatsFile(PacketsStats stats, string fileName)
 
 	outputFile << "Statystyki wygenerowanych pakietów:" << endl;
 	outputFile << "Liczba przetworzonych pakietów: " << stats.packetsCount << endl;
-	outputFile << "Liczba przetworzonych pakietów liczbowych: " << stats.numericPacketsGenerateTime.size() << endl;
-	outputFile << "Liczba przetworzonych pakietów tekstowych: " << stats.textPacketsGenerateTime.size() << endl;
-	outputFile << "Liczba przetworzonych pakietów mieszanych: " << stats.mixedPacketsGenerateTime.size() << endl;
+	outputFile << "Liczba przetworzonych pakietów liczbowych: " << stats.numericPacketsInfo.size() << endl;
+	outputFile << "Liczba przetworzonych pakietów tekstowych: " << stats.textPacketsInfo.size() << endl;
+	outputFile << "Liczba przetworzonych pakietów mieszanych: " << stats.mixedPacketsInfo.size() << endl;
 	outputFile << endl;
 	outputFile << "Ca³kowity czas przetwarzania pakietów: " << stats.totalPacketsGeneratedTime << "ms" << endl;
 	outputFile << "Ca³kowity czas przetwarzania pakietów liczbowych: " << stats.numericPacketsGeneratedTime << "ms" << endl;
@@ -27,22 +27,22 @@ bool OutputManager::createStatsFile(PacketsStats stats, string fileName)
 
 	outputFile << "Wygenerowane pakiety liczbowe: " << endl;
 	outputFile << "Nr\tIloœæ znaków\tCzas przetwarzania\tTekstowa Reprezentacja" << endl;
-	for (int i = 0; i < stats.numericPacketsGenerateTime.size(); i++) {
-		outputFile << i + 1 << "\t" << stats.numericPacketsStringRepresentation[i].length() << "\t" << stats.numericPacketsGenerateTime[i] << "ms\t" << stats.numericPacketsStringRepresentation[i] << endl;
+	for (int i = 0; i < stats.numericPacketsInfo.size(); i++) {
+		outputFile << i + 1 << "\t" << stats.numericPacketsInfo[i].stringRepresentation.length() << "\t" << stats.numericPacketsInfo[i].generatedTime << "ms\t" << stats.numericPacketsInfo[i].stringRepresentation << endl;
 	}
 	outputFile << endl;
 
 	outputFile << "Wygenerowane pakiety tekstowe: " << endl;
 	outputFile << "Nr\tIloœæ znaków\tCzas przetwarzania\tTekstowa Reprezentacja" << endl;
-	for (int i = 0; i < stats.textPacketsGenerateTime.size(); i++) {
-		outputFile << i + 1 << "\t" << stats.textPacketsStringRepresentation[i].length() << "\t" << stats.textPacketsGenerateTime[i] << "ms\t" << stats.textPacketsStringRepresentation[i] << endl;
+	for (int i = 0; i < stats.textPacketsInfo.size(); i++) {
+		outputFile << i + 1 << "\t" << stats.textPacketsInfo[i].stringRepresentation.length() << "\t" << stats.textPacketsInfo[i].generatedTime << "ms\t" << stats.textPacketsInfo[i].stringRepresentation << endl;
 	}
 	outputFile << endl;
 
 	outputFile << "Wygenerowane pakiety mieszane: " << endl;
 	outputFile << "Nr\tIloœæ znaków\tCzas przetwarzania\tTekstowa Reprezentacja" << endl;
-	for (int i = 0; i < stats.mixedPacketsGenerateTime.size(); i++) {
-		outputFile << i + 1 << "\t" << stats.mixedPacketsStringRepresentation[i].length() << "\t" << stats.mixedPacketsGenerateTime[i] << "ms\t" << stats.mixedPacketsStringRepresentation[i] << endl;
+	for (int i = 0; i < stats.mixedPacketsInfo.size(); i++) {
+		outputFile << i + 1 << "\t" << stats.mixedPacketsInfo[i].stringRepresentation.length() << "\t" << stats.mixedPacketsInfo[i].generatedTime << "ms\t" << stats.mixedPacketsInfo[i].stringRepresentation << endl;
 	}
 	outputFile << endl;
 

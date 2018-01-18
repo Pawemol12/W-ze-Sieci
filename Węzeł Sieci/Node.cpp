@@ -30,7 +30,7 @@ void Node::increaseStatsForNumbers(int number)
 {
 	auto iter = this->packetsStats.statsForIntegers.find(number);
 	if (iter == this->packetsStats.statsForIntegers.end()) {
-		this->packetsStats.statsForIntegers[number] = PacketStats(1, MILISECONDS_PER_INT);
+		this->packetsStats.statsForIntegers[number] = PacketStatsForSign(1, MILISECONDS_PER_INT);
 	}
 	else {
 		this->packetsStats.statsForIntegers[number].count++;
@@ -43,7 +43,7 @@ void Node::increaseStatsForChars(char character)
 
 	auto iter = this->packetsStats.statsForChars.find(character);
 	if (iter == this->packetsStats.statsForChars.end()) {
-		this->packetsStats.statsForChars[character] = PacketStats(1, MILISECONDS_PER_CHAR);
+		this->packetsStats.statsForChars[character] = PacketStatsForSign(1, MILISECONDS_PER_CHAR);
 	}
 	else {
 		this->packetsStats.statsForChars[character].count++;
@@ -59,7 +59,6 @@ void Node::generateStatsForNumericPacket(NumberPacket *numberPacket)
 	this->packetsStats.numericPacketsGeneratedTime += generatedTime;
 	this->packetsStats.totalPacketsGeneratedTime += generatedTime;
 
-	this->packetsStats.numericPacketsGenerateTime.push_back(generatedTime);
 
 	string stringRepresentation;
 	for (int i = 0; i < packetLength; i++)
@@ -69,8 +68,10 @@ void Node::generateStatsForNumericPacket(NumberPacket *numberPacket)
 		
 		increaseStatsForNumbers(number);
 	}
-
-	this->packetsStats.numericPacketsStringRepresentation.push_back(stringRepresentation);
+	PacketInfo packetInfo;
+	packetInfo.generatedTime = generatedTime;
+	packetInfo.stringRepresentation = stringRepresentation;
+	this->packetsStats.numericPacketsInfo.push_back(packetInfo);
 }
 
 void Node::generateStatsForTextPacket(TextPacket *textPacket)
@@ -82,15 +83,20 @@ void Node::generateStatsForTextPacket(TextPacket *textPacket)
 	this->packetsStats.textPacketsGeneratedTime += generatedTime;
 	this->packetsStats.totalPacketsGeneratedTime += generatedTime;
 
-	this->packetsStats.textPacketsGenerateTime.push_back(generatedTime);
+
 	string stringRepresentation(charArray);
-	this->packetsStats.textPacketsStringRepresentation.push_back(stringRepresentation);
+
 
 	for (int i = 0; i < packetLength; i++)
 	{
 		char character = charArray[i];
 		increaseStatsForChars(character);
 	}
+
+	PacketInfo packetInfo;
+	packetInfo.generatedTime = generatedTime;
+	packetInfo.stringRepresentation = stringRepresentation;
+	this->packetsStats.textPacketsInfo.push_back(packetInfo);
 }
 
 void Node::generateStatsForMixedPacket(MixedPacket *mixedPacket)
@@ -116,9 +122,11 @@ void Node::generateStatsForMixedPacket(MixedPacket *mixedPacket)
 		}
 	}
 
-	this->packetsStats.mixedPacketsGenerateTime.push_back(generatedTime);
 	string stringRepresentation(mixedArray);
-	this->packetsStats.mixedPacketsStringRepresentation.push_back(stringRepresentation);
+	PacketInfo packetInfo;
+	packetInfo.generatedTime = generatedTime;
+	packetInfo.stringRepresentation = stringRepresentation;
+	this->packetsStats.mixedPacketsInfo.push_back(packetInfo);
 }
 
 void Node::generateStatsForPacket(Packet *packet)
