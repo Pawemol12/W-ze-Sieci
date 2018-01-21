@@ -18,9 +18,10 @@ bool InputManager::isSwitcherKey(std::string switcherKey)
 
 int InputManager::tryParseInputArguments(int argc, char* argv[]) 
 {
-	if (argc < TOTAL_PARAMETRS_NUMBER + 1)
+	if (argc < TOTAL_PARAMETRS_NUMBER * 2 + 1)
 		return PARSE_INPUT_RESULT_NOT_ENOUGH_ARGUMENTS;
 
+	int argValidated = 0;
 	for (int i = 1; i < argc; i++) {
 		string switcherKey(argv[i]);
 		if (this->isValidSwitcherKey(switcherKey)) {
@@ -37,6 +38,7 @@ int InputManager::tryParseInputArguments(int argc, char* argv[])
 			else if (switcherKey == "-n") {
 				try {
 					this->timeBetweenPacketGeneration = stoi(switcherValue);
+					argValidated++;
 				}
 				catch (const invalid_argument& ia) {
 					return PARSE_INPUT_RESULT_WRONG_VALUE;
@@ -45,6 +47,7 @@ int InputManager::tryParseInputArguments(int argc, char* argv[])
 			else if (switcherKey == "-t") {
 				try {
 					this->simulationTotalTime = stoi(switcherValue);
+					argValidated++;
 				}
 				catch (const invalid_argument& ia) {
 					return PARSE_INPUT_RESULT_WRONG_VALUE;
@@ -52,11 +55,17 @@ int InputManager::tryParseInputArguments(int argc, char* argv[])
 			}
 			else if (switcherKey == "-o") {
 				this->outputFileName = switcherValue;
+				argValidated++;
 			}
 
 		}
 
 	}
+
+	if (argValidated != TOTAL_PARAMETRS_NUMBER) {
+		return PARSE_INPUT_RESULT_NOT_ENOUGH_ARGUMENTS;
+	}
+
 	return PARSE_INPUT_RESULT_OK;
 }
 
